@@ -1,0 +1,225 @@
+/* ===========================
+   Modern Fullscreen Editor Layout
+   =========================== */
+
+:root {
+  --bg: #0e1117;
+  --panel: #181b25;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #1f2937;
+  --radius: 10px;
+  --transition: 0.25s ease;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===========================
+   Header Bar
+   =========================== */
+header {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+header h1 {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ef4444;
+  transition: background var(--transition);
+}
+
+.status-dot.connected {
+  background: #22c55e;
+}
+
+/* ===========================
+   Main Layout
+   =========================== */
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  height: calc(100vh - 70px);
+  padding: 24px 32px;
+}
+
+/* ===========================
+   Left: Editor Section
+   =========================== */
+.editor-container {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chip {
+  background: #11161f;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+textarea {
+  flex: 1;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  background: #0b0f19;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: "Fira Code", monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 14px;
+  outline: none;
+  transition: border var(--transition);
+}
+
+textarea:focus {
+  border-color: var(--accent);
+}
+
+.muted {
+  text-align: right;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ===========================
+   Right: Controls Panel
+   =========================== */
+/* Sidebar layout tweaks */
+/* Sidebar wrapper */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* spacing between Create and Join sections */
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* Each section inside sidebar */
+.sidebar > div {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 18px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* spacing between inputs and button */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Section title */
+.sidebar h2 {
+  font-size: 17px;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Inputs */
+.sidebar input {
+  background: #0e131c;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  color: var(--text);
+  width: 100%;
+  outline: none;
+  transition: border var(--transition), box-shadow var(--transition);
+}
+
+/* Adds space between multiple inputs (e.g., Room ID & Password) */
+.sidebar input + input {
+  margin-top: 10px;
+}
+
+/* Focus effect */
+.sidebar input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+/* Buttons */
+.sidebar button {
+  align-self: flex-start; /* keeps left aligned */
+  margin-top: 12px; /* space above button */
+  background: linear-gradient(180deg, var(--accent), var(--accent-hover));
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 500;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.sidebar button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
